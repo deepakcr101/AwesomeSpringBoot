@@ -79,12 +79,12 @@ What is it? This is the fundamental principle. Inversion of Control means you gi
 
 * **Analogy:** In our restaurant, the bread, bacon, lettuce, and the final BLT sandwich are all "Beans" managed by the chef (the IoC container).
 
-How do you tell Spring to manage an object as a Bean? You use annotations. The most basic one is @Component.
+* **How do you tell Spring to manage an object as a Bean?** You use annotations. The most basic one is @Component.
 
 
-Let's refactor our Engine class to be a Spring Bean.
+Let's refactor our ```Engine``` class to be a Spring Bean.
 
-
+```
 import org.springframework.stereotype.Component;
 
 @Component // Hey Spring, please create and manage an object of this class.
@@ -93,37 +93,37 @@ public class V8Engine {
         System.out.println("V8 Engine roaring to life!");
     }
 }
-
-Now, when Spring starts, it will scan your project, find the @Component annotation, and create an instance of V8Engine and keep it ready in its container.
-
-
-(Note: @Service, @Repository, and @RestController are all specializations of @Component. They behave the same way for bean creation but add semantic meaning.)
+```
+Now, when Spring starts, it will scan your project, find the ```@Component``` annotation, and create an instance of V8Engine and keep it ready in its container.
 
 
-3. Dependency Injection (DI)
+(Note: ```@Service, @Repository, and @RestController``` are all specializations of ``@Component``. They behave the same way for bean creation but add semantic meaning.)
 
 
-What is it? DI is the mechanism through which IoC is achieved. It's the process by which the Spring container "injects" the dependencies (beans) into another bean that needs them.
-
-Analogy: Dependency Injection is the waiter bringing the finished sandwich to your table. The Chef (IoC Container) created the sandwich; the waiter (DI process) delivered it to you.
-
-How does it work? Spring sees that one bean needs another and automatically provides it. The most common way to request this is using the @Autowired annotation.
+**3. Dependency Injection (DI)**
 
 
-4. Autowiring
+* **What is it?** DI is the mechanism through which IoC is achieved. It's the process by which the Spring container "injects" the dependencies (beans) into another bean that needs them.
+
+* **Analogy**: Dependency Injection is the waiter bringing the finished sandwich to your table. The Chef (IoC Container) created the sandwich; the waiter (DI process) delivered it to you.
+
+* **How does it work?** Spring sees that one bean needs another and automatically provides it. The most common way to request this is using the ``@Autowired`` annotation.
 
 
-What is it? Autowiring is the process of performing Dependency Injection automatically. When Spring sees the @Autowired annotation, it searches its container for a bean of the required type and injects it.
+**4. Autowiring**
 
 
-Let's put it all together and fix our MuscleCar class.
+* **What is it?** **Autowiring** is the process of performing Dependency Injection automatically. When Spring sees the @Autowired annotation, it searches its container for a bean of the required type and injects it.
 
 
-The Recommended Way: Constructor Injection
+Let's put it all together and fix our ``MuscleCar`` class.
+
+
+**The Recommended Way: Constructor Injection**
 
 This is the best practice for dependency injection.
 
-
+```
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -145,17 +145,19 @@ public class MuscleCar {
         System.out.println("Driving the car...");
     }
 }
+```
 
-Why is Constructor Injection the best?
+**Why is Constructor Injection the best?**
 
 
 
-Guaranteed Dependencies: The MuscleCar cannot be created without an engine. It's impossible to have a half-initialized object.
+* **Guaranteed Dependencies:** The MuscleCar cannot be created without an engine. It's impossible to have a half-initialized object.
 
-Immutability: You can declare the dependency as final, meaning it cannot be changed after the object is created, making your code safer.
+* **Immutability:** You can declare the dependency as final, meaning it cannot be changed after the object is created, making your code safer.
 
-Testability: When you test MuscleCar, you can easily create a new MuscleCar(new MockEngine()) yourself, passing in a fake engine. You don't need Spring to do it.
+* **Testability:** When you test MuscleCar, you can easily create a new MuscleCar(new MockEngine()) yourself, passing in a fake engine. You don't need Spring to do it.
 
+## Spring Basics
 
 * **What is it?** A massive, powerful framework for building enterprise-grade Java applications. Its core purpose is to make developers' lives easier by managing the "plumbing" of an application, so you can focus on your business logic.
 
