@@ -1,0 +1,19 @@
+package com.deepak.dbConnection;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+public class DatabaseConnection {
+
+	public static Connection getConnection() {
+		Connection connection = null;
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/mvc_db", "root", "Root@1234");
+			// System.out.println("Database connected successfully.");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return connection;
+	}
+}
