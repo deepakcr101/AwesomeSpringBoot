@@ -14,6 +14,11 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+Servers/
+bin/
+logs/
+springJars/
+
 ### STS ###
 .apt_generated
 .classpath
